@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CTF - Capture The Flag{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0a0a0a;
+            color: #00ff00;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        h1 {
+            color: #ff0000;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #ffff00;
+            border-bottom: 2px solid #ffff00;
+            padding-bottom: 10px;
+        }
+        
+        .phase-nav {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .phase-link {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+        
+        .phase-link:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+        
+        .phase-link.completed {
+            background-color: #00aa00;
+        }
+        
+        .phase-link.locked {
+            background-color: #666;
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .flag-box {
+            background-color: #2a2a2a;
+            border: 2px solid #00ff00;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .flag {
+            color: #00ffff;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+        }
+        
+        form {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        input, textarea, button {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        button {
+            background-color: #0066cc;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #0088ff;
+        }
+        
+        .error {
+            color: #ff0000;
+            background-color: #330000;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .success {
+            color: #00ff00;
+            background-color: #003300;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .code {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid #00ff00;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            color: #ffaa00;
+            background-color: #332200;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #ffaa00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}{% endblock %}
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="phase-link">🏠 Página Inicial</a>
+            <a href="/reset" class="phase-link" style="background-color: #cc6600;">🔄 Reset Progresso</a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px; color: #666; font-size: 0.8em;">
+            <p>⚠️ Esta é uma aplicação educacional para demonstração de vulnerabilidades web</p>
+            <p>NUNCA implemente essas vulnerabilidades em aplicações de produção!</p>
+        </div>
+    </div>
+</body>
+</html>

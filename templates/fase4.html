@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Fase 4 - IDOR{% endblock %}
+
+{% block content %}
+<h1>📁 FASE 4: INSECURE DIRECT OBJECT REFERENCE (IDOR)</h1>
+
+<div class="warning">
+    <strong>🎯 Objetivo:</strong> Encontre a flag explorando a vulnerabilidade de IDOR para acessar arquivos não autorizados.
+</div>
+
+<div class="flag-box">
+    <h3>📖 Dica:</h3>
+    <p>O sistema permite visualizar documentos através de parâmetros na URL...</p>
+    <p>Será que você consegue acessar arquivos que não deveria? 🤔</p>
+    <p><em>Experimente manipular o nome do arquivo na URL...</em></p>
+</div>
+
+<h2>📄 Sistema de Documentos</h2>
+<p>Visualize os documentos disponíveis:</p>
+
+<div class="phase-nav">
+    <a href="/documento?file=doc1.txt" class="phase-link">📄 Documento 1</a>
+    <a href="/documento?file=doc2.txt" class="phase-link">📄 Documento 2</a>
+</div>
+
+<div class="flag-box">
+    <h3>💡 Dicas Adicionais:</h3>
+    <ul>
+        <li>Observe como os arquivos são referenciados na URL</li>
+        <li>Que outros nomes de arquivo poderiam existir?</li>
+        <li>E se tentasse acessar arquivos em outros diretórios?</li>
+        <li>Arquivos importantes costumam ter nomes como "flag", "admin", "secret"...</li>
+    </ul>
+</div>
+
+<div class="flag-box">
+    <h3>🔍 Como Validar:</h3>
+    <p>Quando encontrar a flag, submeta ela no formulário abaixo:</p>
+    <form method="POST" action="/validate_flag">
+        <input type="hidden" name="phase" value="4">
+        <label for="flag">🏴 Flag encontrada:</label><br>
+        <input type="text" name="flag" id="flag" placeholder="flag{...}" required><br>
+        <button type="submit">✅ Validar Flag</button>
+    </form>
+</div>
+
+<div class="code">
+    <h4>🔬 Análise Técnica:</h4>
+    <p><strong>Vulnerabilidade:</strong> Insecure Direct Object Reference (IDOR)</p>
+    <p><strong>Causa:</strong> Falta de validação de acesso a recursos baseados em parâmetros de entrada</p>
+    <p><strong>Impacto:</strong> Acesso não autorizado a arquivos, vazamento de informações sensíveis</p>
+    <p><strong>Prevenção:</strong> Validar permissões de acesso, usar IDs indiretos, implementar controle de acesso baseado em função</p>
+</div>
+{% endblock %}

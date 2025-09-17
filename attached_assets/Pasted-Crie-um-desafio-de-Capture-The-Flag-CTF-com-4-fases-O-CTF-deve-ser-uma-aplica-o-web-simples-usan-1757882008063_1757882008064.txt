@@ -1,0 +1,46 @@
+Crie um desafio de Capture The Flag (CTF) com 4 fases. O CTF deve ser uma aplicação web simples usando Python e o framework Flask. O código deve ser organizado e conter comentários explicando a lógica de cada vulnerabilidade.
+
+---
+
+**Objetivos do Desafio:**
+
+1.  **Estrutura:** Crie uma página inicial com links para as 4 fases.
+2.  **Flags:** Cada fase deve ter uma "flag" oculta no formato `flag{nome_da_vulnerabilidade}` que o jogador precisa encontrar para passar para a próxima fase.
+3.  **Acesso:** Apenas após a resolução de uma fase o link para a próxima deve ser exibido na página principal. A flag pode ser inserida em um campo de formulário para validar o avanço.
+
+---
+
+**Fases (com vulnerabilidades web específicas):**
+
+* **Fase 1: HTML Injection e Comentário Oculto**
+    * Crie uma página com um formulário de feedback.
+    * Não faça a sanitização da entrada do usuário.
+    * A flag deve estar oculta em um comentário HTML na página, mas o comentário só deve aparecer se o usuário injetar um HTML válido que feche a tag de um input.
+    * Exemplo de flag: `flag{comentario_oculto}`
+
+* **Fase 2: Broken Access Control (BAC)**
+    * Crie uma página de "Perfil" que exibe informações de um usuário com um parâmetro na URL, por exemplo, `/perfil?id=1`.
+    * A flag deve estar em uma página de "Admin" que só é acessível por um usuário com `id=1337`.
+    * O desafio é que, se o usuário alterar o `id` na URL de `1` para `1337`, ele consegue acessar a página e ver a flag, sem qualquer autenticação ou validação de permissão.
+    * Exemplo de flag: `flag{privilegio_elevado}`
+
+* **Fase 3: SQL Injection (SQLi) Simples**
+    * Crie uma página de login com campos de usuário e senha.
+    * O código Python para a validação do login deve ser vulnerável a SQL Injection. Não use um banco de dados de verdade, simule a lógica de consulta com uma string.
+    * A consulta SQL de validação deve ser algo como: `SELECT * FROM usuarios WHERE username = '{username}' AND password = '{password}'`.
+    * O objetivo é que o jogador use uma injeção de SQL (`' OR '1'='1'--`) para fazer o login sem ter as credenciais corretas e ver a flag na página seguinte.
+    * Exemplo de flag: `flag{login_invalido}`
+
+* **Fase 4: Insecure Direct Object Reference (IDOR)**
+    * Crie uma página que permite visualizar documentos, como `/documento?file=doc1.txt`.
+    * A flag deve estar em um arquivo que não deveria ser acessível, como `flag.txt` ou `../flag.txt`.
+    * O código não deve verificar se o usuário tem permissão para acessar o arquivo. O jogador deve manipular o parâmetro `file` na URL para navegar até o arquivo da flag e encontrá-la.
+    * Exemplo de flag: `flag{caminho_secreto}`
+
+---
+
+**Instruções para o código:**
+
+* Use `os.path.join` e `safe_join` para mitigar o IDOR, mas comente o código de segurança para que a vulnerabilidade possa ser explorada. A vulnerabilidade deve ser a ausência dessa validação.
+* Para o SQLi, explique no código que a vulnerabilidade está na falta de uso de `Prepared Statements`.
+* As flags devem ser escondidas de forma que só apareçam após a exploração da vulnerabilidade. Elas podem estar no código-fonte, em arquivos separados ou em mensagens de sucesso.

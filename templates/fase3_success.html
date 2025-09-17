@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Login Bem-sucedido - SQL Injection{% endblock %}
+
+{% block content %}
+<h1>✅ LOGIN BEM-SUCEDIDO!</h1>
+
+<div class="success">
+    <h2>🎉 Parabéns! Você explorou a vulnerabilidade de SQL Injection!</h2>
+    <p>Você conseguiu fazer bypass da autenticação manipulando a consulta SQL.</p>
+</div>
+
+<div class="flag-box">
+    <h3>🏴 Flag Encontrada:</h3>
+    <div class="flag">
+        <p>{{ flag }}</p>
+    </div>
+</div>
+
+<div class="code">
+    <h4>🔍 Consulta SQL que foi executada:</h4>
+    <code>{{ sql_query }}</code>
+    <p><em>Note como a injeção SQL alterou a lógica da consulta original!</em></p>
+</div>
+
+<div class="warning">
+    <h4>⚠️ Explicação da Vulnerabilidade:</h4>
+    <p>A aplicação construiu a consulta SQL concatenando diretamente a entrada do usuário, sem sanitização.</p>
+    <p>Isso permitiu que você injetasse código SQL malicioso que mudou a lógica da consulta.</p>
+    <p>Em vez de verificar usuário E senha, a consulta foi manipulada para sempre retornar verdadeiro.</p>
+</div>
+
+<div class="phase-nav">
+    <a href="/fase3" class="phase-link">🔙 Voltar para Fase 3</a>
+    <a href="/" class="phase-link">🏠 Página Inicial</a>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Erro - CTF{% endblock %}
+
+{% block content %}
+<h1>❌ ERRO</h1>
+
+<div class="error">
+    <h2>Oops! Algo deu errado...</h2>
+    <p>{{ message }}</p>
+</div>
+
+<div class="phase-nav">
+    <a href="/" class="phase-link">🏠 Voltar ao Início</a>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <p>Se você estava tentando explorar uma vulnerabilidade, verifique se está seguindo as dicas corretas!</p>
+</div>
+{% endblock %}

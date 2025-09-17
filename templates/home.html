@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}CTF - Página Inicial{% endblock %}
+
+{% block content %}
+<h1>🏴‍☠️ CAPTURE THE FLAG (CTF) 🏴‍☠️</h1>
+<h2>Desafio de Segurança Web com 4 Fases</h2>
+
+<div class="warning">
+    <strong>⚠️ AVISO EDUCACIONAL:</strong> Esta aplicação contém vulnerabilidades intencionais para fins educacionais.
+    As técnicas demonstradas aqui devem ser usadas apenas em ambientes controlados para aprendizagem.
+</div>
+
+<div class="flag-box">
+    <h3>📊 Seu Progresso:</h3>
+    <p><strong>Fase Atual:</strong> {{ current_phase }}/4</p>
+    <p><strong>Fases Completadas:</strong> {{ completed_phases|length }}/4</p>
+    {% if completed_phases %}
+        <p><strong>Fases concluídas:</strong> {{ completed_phases|join(', ') }}</p>
+    {% endif %}
+</div>
+
+<div class="phase-nav">
+    <a href="/fase1" class="phase-link {% if 1 in completed_phases %}completed{% endif %}">
+        🎯 Fase 1: HTML Injection
+        {% if 1 in completed_phases %}✅{% endif %}
+    </a>
+    
+    <a href="/fase2" class="phase-link {% if 2 in completed_phases %}completed{% elif 1 not in completed_phases %}locked{% endif %}"
+       {% if 1 not in completed_phases %}onclick="return false;"{% endif %}>
+        🔐 Fase 2: Access Control
+        {% if 2 in completed_phases %}✅{% elif 1 not in completed_phases %}🔒{% endif %}
+    </a>
+    
+    <a href="/fase3" class="phase-link {% if 3 in completed_phases %}completed{% elif 2 not in completed_phases %}locked{% endif %}"
+       {% if 2 not in completed_phases %}onclick="return false;"{% endif %}>
+        💉 Fase 3: SQL Injection
+        {% if 3 in completed_phases %}✅{% elif 2 not in completed_phases %}🔒{% endif %}
+    </a>
+    
+    <a href="/fase4" class="phase-link {% if 4 in completed_phases %}completed{% elif 3 not in completed_phases %}locked{% endif %}"
+       {% if 3 not in completed_phases %}onclick="return false;"{% endif %}>
+        📁 Fase 4: IDOR
+        {% if 4 in completed_phases %}✅{% elif 3 not in completed_phases %}🔒{% endif %}
+    </a>
+</div>
+
+<div class="flag-box">
+    <h3>📋 Como Funciona:</h3>
+    <ol>
+        <li><strong>Explore cada fase</strong> para encontrar vulnerabilidades web</li>
+        <li><strong>Encontre a flag</strong> no formato <code>flag{nome_da_vulnerabilidade}</code></li>
+        <li><strong>Submeta a flag</strong> para desbloquear a próxima fase</li>
+        <li><strong>Complete todas as 4 fases</strong> para finalizar o desafio</li>
+    </ol>
+</div>
+
+<div class="flag-box">
+    <h3>🎯 Vulnerabilidades por Fase:</h3>
+    <ul>
+        <li><strong>Fase 1:</strong> HTML Injection + Comentários Ocultos</li>
+        <li><strong>Fase 2:</strong> Broken Access Control (BAC)</li>
+        <li><strong>Fase 3:</strong> SQL Injection Básica</li>
+        <li><strong>Fase 4:</strong> Insecure Direct Object Reference (IDOR)</li>
+    </ul>
+</div>
+
+{% if completed_phases|length == 4 %}
+<div class="success">
+    <h2>🎉 PARABÉNS! 🎉</h2>
+    <p>Você completou todos os desafios do CTF!</p>
+    <p>Você demonstrou conhecimento das seguintes vulnerabilidades web:</p>
+    <ul>
+        <li>✅ HTML Injection</li>
+        <li>✅ Broken Access Control</li>
+        <li>✅ SQL Injection</li>
+        <li>✅ Insecure Direct Object Reference (IDOR)</li>
+    </ul>
+</div>
+{% endif %}
+{% endblock %}

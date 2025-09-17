@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Fase 3 - SQL Injection{% endblock %}
+
+{% block content %}
+<h1>💉 FASE 3: SQL INJECTION</h1>
+
+<div class="warning">
+    <strong>🎯 Objetivo:</strong> Faça login no sistema explorando uma vulnerabilidade de SQL Injection.
+</div>
+
+<div class="flag-box">
+    <h3>📖 Dica:</h3>
+    <p>O sistema usa uma consulta SQL insegura para validar credenciais...</p>
+    <p>Que tal tentar fazer a consulta sempre retornar verdadeiro? 🤔</p>
+    <p><em>Pense em como manipular a lógica da consulta SQL...</em></p>
+</div>
+
+<h2>🔐 Sistema de Login</h2>
+
+{% if error %}
+    <div class="error">
+        <p>❌ {{ error }}</p>
+    </div>
+{% endif %}
+
+{% if sql_query %}
+    <div class="code">
+        <h4>🔍 Consulta SQL executada:</h4>
+        <code>{{ sql_query }}</code>
+    </div>
+{% endif %}
+
+<form method="POST">
+    <label for="username">👤 Nome de usuário:</label><br>
+    <input type="text" name="username" id="username" required><br>
+    
+    <label for="password">🔒 Senha:</label><br>
+    <input type="password" name="password" id="password" required><br>
+    
+    <button type="submit">🔑 Fazer Login</button>
+</form>
+
+<div class="flag-box">
+    <h3>🔍 Como Validar:</h3>
+    <p>Quando encontrar a flag, submeta ela no formulário abaixo:</p>
+    <form method="POST" action="/validate_flag">
+        <input type="hidden" name="phase" value="3">
+        <label for="flag">🏴 Flag encontrada:</label><br>
+        <input type="text" name="flag" id="flag" placeholder="flag{...}" required><br>
+        <button type="submit">✅ Validar Flag</button>
+    </form>
+</div>
+
+<div class="code">
+    <h4>🔬 Análise Técnica:</h4>
+    <p><strong>Vulnerabilidade:</strong> SQL Injection</p>
+    <p><strong>Causa:</strong> Concatenação insegura de strings na consulta SQL</p>
+    <p><strong>Impacto:</strong> Bypass de autenticação, acesso não autorizado, manipulação de dados</p>
+    <p><strong>Prevenção:</strong> Usar prepared statements, validar entrada, escapar caracteres especiais</p>
+</div>
+{% endblock %}

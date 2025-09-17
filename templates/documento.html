@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Documento - {{ filename }}{% endblock %}
+
+{% block content %}
+<h1>📄 VISUALIZADOR DE DOCUMENTOS</h1>
+
+<div class="flag-box">
+    <h3>📁 Arquivo: {{ filename }}</h3>
+</div>
+
+<div class="code">
+    <h4>📄 Conteúdo do arquivo:</h4>
+    <pre>{{ content }}</pre>
+</div>
+
+{% if 'flag{' in content %}
+    <div class="success">
+        <h2>🎉 IDOR EXPLORADO COM SUCESSO!</h2>
+        <p>Você conseguiu acessar um arquivo não autorizado!</p>
+        <p>Esta é uma vulnerabilidade grave que permite acesso a arquivos sensíveis do sistema.</p>
+    </div>
+{% endif %}
+
+<div class="phase-nav">
+    <a href="/fase4" class="phase-link">🔙 Voltar para Fase 4</a>
+    <a href="/documento?file=doc1.txt" class="phase-link">📄 doc1.txt</a>
+    <a href="/documento?file=doc2.txt" class="phase-link">📄 doc2.txt</a>
+</div>
+
+<div class="warning">
+    <h4>⚠️ Explicação da Vulnerabilidade IDOR:</h4>
+    <p>O sistema não validou se você tinha permissão para acessar o arquivo solicitado.</p>
+    <p>Ao manipular o parâmetro 'file' na URL, você conseguiu acessar arquivos não autorizados.</p>
+    <p>Em um sistema real, isso poderia expor informações confidenciais, senhas, ou dados sensíveis.</p>
+</div>
+{% endblock %}

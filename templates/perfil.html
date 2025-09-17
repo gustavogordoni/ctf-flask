@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Perfil do Usuário{% endblock %}
+
+{% block content %}
+<h1>👤 PERFIL DO USUÁRIO</h1>
+
+<div class="flag-box">
+    <h3>📊 Informações do Usuário (ID: {{ user_id }}):</h3>
+    <p><strong>Nome:</strong> {{ user.nome }}</p>
+    <p><strong>Nível de Acesso:</strong> {{ user.nivel }}</p>
+    
+    {% if is_admin %}
+        <div class="success">
+            <h3>🔓 ACESSO ADMINISTRATIVO DETECTADO!</h3>
+            <p>Você conseguiu acessar uma conta de administrador!</p>
+            {% if flag %}
+                <div class="flag">
+                    <p>🏴 Flag encontrada: {{ flag }}</p>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="warning">
+            <p>Este é um usuário comum. Talvez existam outros IDs interessantes? 🤔</p>
+        </div>
+    {% endif %}
+</div>
+
+<div class="phase-nav">
+    <a href="/fase2" class="phase-link">🔙 Voltar para Fase 2</a>
+    <a href="/perfil?id=1" class="phase-link">👤 Usuário 1</a>
+</div>
+{% endblock %}

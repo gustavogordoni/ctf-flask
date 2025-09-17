@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Fase 1 - HTML Injection{% endblock %}
+
+{% block content %}
+<h1>🎯 FASE 1: HTML INJECTION</h1>
+
+<div class="warning">
+    <strong>🎯 Objetivo:</strong> Encontre a flag oculta explorando a vulnerabilidade de HTML Injection nesta página de feedback.
+</div>
+
+<div class="flag-box">
+    <h3>📖 Dica:</h3>
+    <p>A flag está escondida em um comentário HTML, mas só aparece quando você conseguir "quebrar" a estrutura HTML existente.</p>
+    <p>Tente inserir HTML válido que feche tags abertas... 🤔</p>
+</div>
+
+<h2>💬 Sistema de Feedback</h2>
+<p>Deixe seu feedback sobre nosso sistema:</p>
+
+<form method="POST">
+    <label for="feedback">📝 Seu Feedback:</label><br>
+    <textarea name="feedback" id="feedback" rows="4" cols="50" placeholder="Digite seu feedback aqui..."></textarea><br>
+    <button type="submit">📤 Enviar Feedback</button>
+</form>
+
+<div class="flag-box">
+    <h3>🔍 Como Validar:</h3>
+    <p>Quando encontrar a flag, submeta ela no formulário abaixo:</p>
+    <form method="POST" action="/validate_flag">
+        <input type="hidden" name="phase" value="1">
+        <label for="flag">🏴 Flag encontrada:</label><br>
+        <input type="text" name="flag" id="flag" placeholder="flag{...}" required><br>
+        <button type="submit">✅ Validar Flag</button>
+    </form>
+</div>
+
+<div class="code">
+    <h4>🔬 Análise Técnica:</h4>
+    <p><strong>Vulnerabilidade:</strong> HTML Injection (Cross-Site Scripting básico)</p>
+    <p><strong>Causa:</strong> Falta de sanitização na entrada do usuário</p>
+    <p><strong>Impacto:</strong> Manipulação do DOM, exposição de dados ocultos</p>
+    <p><strong>Prevenção:</strong> Sanitizar entrada, escapar caracteres especiais, validar dados</p>
+</div>
+{% endblock %}

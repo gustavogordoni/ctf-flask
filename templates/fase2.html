@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Fase 2 - Broken Access Control{% endblock %}
+
+{% block content %}
+<h1>🔐 FASE 2: BROKEN ACCESS CONTROL</h1>
+
+<div class="warning">
+    <strong>🎯 Objetivo:</strong> Encontre uma forma de acessar informações de administrador explorando falhas no controle de acesso.
+</div>
+
+<div class="flag-box">
+    <h3>📖 Dica:</h3>
+    <p>O sistema de perfis usa IDs na URL. Será que existe um ID especial para administradores? 🤔</p>
+    <p>Experimente modificar parâmetros na URL...</p>
+</div>
+
+<h2>👤 Sistema de Perfis de Usuário</h2>
+<p>Visualize perfis de usuários do sistema:</p>
+
+<div class="flag-box">
+    <a href="/perfil?id=1" class="phase-link">👤 Ver Perfil do Usuário (ID: 1)</a>
+</div>
+
+<div class="flag-box">
+    <h3>🔍 Como Validar:</h3>
+    <p>Quando encontrar a flag, submeta ela no formulário abaixo:</p>
+    <form method="POST" action="/validate_flag">
+        <input type="hidden" name="phase" value="2">
+        <label for="flag">🏴 Flag encontrada:</label><br>
+        <input type="text" name="flag" id="flag" placeholder="flag{...}" required><br>
+        <button type="submit">✅ Validar Flag</button>
+    </form>
+</div>
+
+<div class="code">
+    <h4>🔬 Análise Técnica:</h4>
+    <p><strong>Vulnerabilidade:</strong> Broken Access Control (BAC)</p>
+    <p><strong>Causa:</strong> Falta de validação de permissões baseada em parâmetros de URL</p>
+    <p><strong>Impacto:</strong> Escalação de privilégios, acesso não autorizado a dados</p>
+    <p><strong>Prevenção:</strong> Implementar controle de acesso adequado, validar permissões, usar tokens de autorização</p>
+</div>
+{% endblock %}
