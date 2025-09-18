@@ -65,7 +65,7 @@ A consulta resultante torna-se equivalente a:
 SELECT * FROM usuarios WHERE username = '' OR '1'='1' AND password = '' OR '1'='1'
 ```
 
-Isso retorna uma condição verdadeira e permitir a autenticação.
+Isso retorna uma condição verdadeira, permitindo a autenticação.
 
 ---
 
