@@ -1,4 +1,4 @@
-# CTF Flask — README (fins educativos)
+# CTF Flask
 
 > **Aviso:** este repositório é **apenas para fins educativos**. Não use as técnicas aqui descritas para invadir, explorar ou comprometer sistemas sem autorização explícita. Este repositório é um *fork* do projeto [`birazn/ctf-flask`](https://github.com/birazn/ctf-flask) e contém 4 desafios intencionais para prática de segurança web.
 
