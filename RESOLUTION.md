@@ -59,7 +59,7 @@ Injetando:
 ' OR '1'='1
 ```
 
-A consulta resultante pode se tornar algo equivalente a:
+A consulta resultante torna-se equivalente a:
 
 ```sql
 SELECT * FROM usuarios WHERE username = '' OR '1'='1' AND password = '' OR '1'='1'
@@ -71,7 +71,7 @@ Isso retorna uma condição verdadeira e permitir a autenticação.
 
 ### Fase 4 — IDOR (Insecure Direct Object Reference)
 
-Acessei por um arquivo específico no servidor local, por exemplo `flag.txt`, você apontou a URL direta:
+Acessei por um arquivo específico no servidor local, nesse caso `flag.txt`:
 
 ```url
 http://localhost:5000/documento?file=flag.txt
